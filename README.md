@@ -12,3 +12,13 @@ pol1="POLYGON((2 1.3,2.4 1.7,2.8 1.8,3.4 1.2,3.7 1.6,3.4 2,4.1 3,5.3 2.6,5.4 1.2
 
 puts VTSLV.area_of_intersection(pol2, pol1)
 ```
+## Development
+
+To develop this gem you will need a c++ compiler (e.g.`g++`) and gem `rice`, install it by running
+`gem install rice -v 4.0.2`
+
+generate makefile and compile the extension via
+```
+ruby ext/vtslv/extconf.rb
+make
+```
