@@ -7,3 +7,7 @@
 /spec/reports/
 /tmp/
 *.gem
+*.o
+*.so
+mkmf.log
+Makefile

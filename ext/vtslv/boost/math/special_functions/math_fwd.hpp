@@ -873,6 +873,9 @@ namespace boost
 
    template <class T>
    bool isfinite BOOST_NO_MACRO_EXPAND(T z);
+   
+   template <class T>
+   bool finite BOOST_NO_MACRO_EXPAND(T z);
 
    template <class T>
    bool isinf BOOST_NO_MACRO_EXPAND(T t);
