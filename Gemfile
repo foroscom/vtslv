@@ -6,3 +6,4 @@ source "https://rubygems.org"
 gemspec
 
 gem "rake", "~> 13.0"
+gem "rice", "~> 4.0.2"
