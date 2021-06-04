@@ -9,7 +9,8 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
     `find .`.split("\n").reject{_1.match(/\.gem$/)}
-  end
+  end  
+  spec.add_dependency "rice", "~> 4.0.2"
   spec.require_paths = ["lib"]
   spec.extensions = %w[ext/vtslv/extconf.rb]
 end
