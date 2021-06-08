@@ -7,27 +7,23 @@
 
 #include <rice/rice.hpp>
 
-using namespace Rice;
-using namespace boost::geometry;
-using namespace std;
+double are_of_intersection(Rice::Object self, Rice::String wkt_poly1, Rice::String wkt_poly2) {
+    typedef boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double> > polygon;
 
-double area_of_intersection(Object self, String wkt_poly1, String wkt_poly2) {
-    typedef model::polygon<model::d2::point_xy<double> > polygon;
-
-    string std_str_poly1 = wkt_poly1.str();
-    string std_str_poly2 = wkt_poly2.str();
+    std::string std_str_poly1 = wkt_poly1.str();
+    std::string std_str_poly2 = wkt_poly2.str();
     double intersection_area;
-    deque<polygon> intersection_deque;
+    std::deque<polygon> intersection_deque;
 
     polygon poly1, poly2;
 
-    read_wkt(std_str_poly1, poly1);
-    read_wkt(std_str_poly2, poly2);
+    boost::geometry::read_wkt(std_str_poly1, poly1);
+    boost::geometry::read_wkt(std_str_poly2, poly2);
 
-    intersection(poly1, poly2, intersection_deque);
+    boost::geometry::intersection(poly1, poly2, intersection_deque);
 
     for (int i = 0; i < intersection_deque.size(); i++) {
-        intersection_area += area(intersection_deque[i]);
+        intersection_area += boost::geometry::area(intersection_deque[i]);
     }
 
     return intersection_area;
@@ -37,7 +33,7 @@ extern "C"
 
 void Init_vtslv()
 {
-  Class rb_cTest =
-    define_class("VTSLV")
-    .define_singleton_method("area_of_intersection", &area_of_intersection, Arg("wkt_poly1"), Arg("wkt_poly2"));
+  Rice::Class rb_cTest =
+    Rice::define_class("VTSLV")
+    .define_singleton_method("area_of_intersection", &are_of_intersection, Rice::Arg("wkt_poly1"), Rice::Arg("wkt_poly2"));
 }
